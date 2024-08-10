@@ -155,7 +155,41 @@
       document.getElementById("comparative-video1").load();
       document.getElementById("comparative-video2").load();
       document.getElementById("comparative-video3").load();
-  }
+    }
+
+    function updateDataVideo1() {
+
+      var task = document.getElementById("data-task1").value;
+      var ep = document.getElementById("data-ep1").value;
+
+      console.log("data1", task, ep)
+    
+      var video = document.getElementById("data-video1");
+      video.src = "media/real_robot_data_video_compressed/" + 
+                  task + 
+                  '/variation0/output_video_ep' +
+                  ep +
+                  ".mp4"
+      video.playbackRate = 1.0;
+      video.play();
+    }
+
+    function updateDataVideo2() {
+
+      var variation = document.getElementById("data-variation2").value;
+      var ep = document.getElementById("data-ep2").value;
+
+      console.log("data2", variation, ep)
+    
+      var video = document.getElementById("data-video2");
+      video.src = "media/real_robot_data_video_compressed/pick_color_cup/variation" + 
+                  variation + 
+                  '/output_video_ep' +
+                  ep +
+                  ".mp4"
+      video.playbackRate = 1.0;
+      video.play();
+    }
 
 
   </script>
@@ -177,7 +211,7 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
-<body onload="updateGeneralizationVideo1(); updateGeneralizationVideo2(); updateSubVideo1(); updateSubVideo2(); updateComparativeVideos();">
+<body onload="updateGeneralizationVideo1(); updateGeneralizationVideo2(); updateSubVideo1(); updateSubVideo2(); updateComparativeVideos(); updateDataVideo1(); updateDataVideo2();">
 
 
 
@@ -499,6 +533,92 @@
               <p id="comparative-text3"><span style="color: #FF4500;"><b>Failure.</b></span> </p>
           </div>
       </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Shared Description -->
+    <div class="rows is-centered">
+      <div class="row is-full-width">
+        <h2 class="title is-4">Visualizations of Demonstrations</h2>
+        <p class="has-text-centered">
+        </p>
+      </div>
+    </div>
+    <div class="columns">
+      <!-- First Video Column -->
+      <div class="column has-text-centered">
+        <!-- Long-horizon Tasks -->
+        <h3 class="title is-5">Long-horizon Tasks</h3>
+        sub-task
+        <div class="select is-small">
+          <select id="data-task1" onchange="updateDataVideo1()">
+            <option value="table0">put trash in trash can</option>
+            <option value="table1">put socks in box</option>
+            <option value="table2">put marker in pen holder</option>
+            <option value="table3">open drawer</option>
+            <option value="table4">put lollipop in drawer</option>
+            <option value="table5">close drawer</option>
+            <option value="coffee1">turn on coffee machine</option>
+            <option value="coffee2">put funnel onto carafe</option>
+            <option value="coffee3">pour powder into funnel</option>
+            <option value="coffee4">pour water</option>            
+          </select>
+        </div>
+        , episode
+        <div class="select is-small">
+          <select id="data-ep1" onchange="updateDataVideo1()">
+            <option value="0">01</option>
+            <option value="1">02</option>
+            <option value="2">03</option>
+            <option value="3">04</option>
+            <option value="4">05</option>
+            <option value="5">06</option>
+            <option value="6">07</option>
+            <option value="7">08</option>
+          </select>
+        </div>
+        <br/>
+        <br/>
+        <video id="data-video1" controls muted autoplay loop playsinline controlsList="nodownload" width="100%">
+          <source src="media/real_robot_data_video_compressed/table0/variation0/output_video_ep0.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Second Video Column -->
+      <div class="column has-text-centered">
+     
+        <!-- Generalization Task -->
+        <h3 class="title is-5">Generalization Task</h3>
+        move 
+        <div class="select is-small">
+          <select id="data-variation2" onchange="updateDataVideo2()">
+            <option value="0">white</option>
+            <option value="1">red</option>
+            <option value="2">yellow</option>
+            <option value="3">orange</option>            
+          </select>
+        </div>
+        cup to target, episode
+        <div class="select is-small">
+          <select id="data-ep2" onchange="updateDataVideo2()">
+            <option value="0">01</option>
+            <option value="1">02</option>
+            <option value="2">03</option>
+            <option value="3">04</option>
+            <option value="4">05</option>
+          </select>
+        </div>
+        <br/>
+        <br/>
+        <video id="data-video2" controls muted autoplay loop playsinline controlsList="nodownload" width="100%">
+          <source src="media/real_robot_data_video_compressed/pick_color_cup/variation0/output_video_ep0.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
   </div>
 </section>
 
